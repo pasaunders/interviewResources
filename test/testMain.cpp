@@ -1,6 +1,6 @@
 //Required infrastructure for Catch2 tests. All test cases in other files.
 #define CATCH_CONFIG_MAIN
-#include <catch.hpp>
+#include "catch.hpp"
 
 
 //from Catch2 tutorial:
