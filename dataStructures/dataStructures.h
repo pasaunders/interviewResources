@@ -31,25 +31,29 @@ private:
     class Node
     {
     private:
-        Node* left;
-        Node* right;
+        Node* left = nullptr;
+        Node* right = nullptr;
         T value;
     public:
+        inline Node(T value) : value(value) {};
         T getValue();
         Node* leftChild();
         Node* rightChild();
     };
+
     int size = 0;
-    int balance(); //-1 for left balance, +1 for right balance, 0 for balanced.
+    int balance();              //-1 for left balance, +1 for right balance, 0 for balanced.
+    void rebalance(Node val);//rebalance a node and its children.
+    Node* root = nullptr;
 public:
-    void insert(T value); //adds a value to the tree.
-    bool search(T value); //whether a given value is in the tree
-    int size(); //number of nodes in tree
-    bool remove(T value); //removes a value from the tree. Returns true if successful, false if the value did not exist. Then balances the tree.
-    std::vector<T> pre_order(); //returns a vector of values from an pre_order traversal of the tree.
-    std::vector<T> in_order(); //returns a vector of values from an in_order traversal of the tree.
-    std::vector<T> post_order(); //returns a vector of values from an post_order traversal of the tree.
-}
+    void insert(T value);       //adds a value to the tree.
+    bool search(T value);       //whether a given value is in the tree
+    int findSize();                 //number of nodes in tree
+    bool remove(T value);       //removes a value from the tree. Returns true if successful, false if the value did not exist. Then balances the tree.
+    std::vector<T> preOrder();  //returns a vector of values from an pre_order traversal of the tree.
+    std::vector<T> inOrder();   //returns a vector of values from an in_order traversal of the tree.
+    std::vector<T> postOrder(); //returns a vector of values from an post_order traversal of the tree.
+};
 
 #include "stack.inl"
 #include "queue.inl"
