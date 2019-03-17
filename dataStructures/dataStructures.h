@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <memory>
 
 template<typename T>
 class Stack
@@ -31,20 +32,22 @@ private:
     class Node
     {
     private:
-        Node* left = nullptr;
-        Node* right = nullptr;
+        std::unique_ptr<Node> left = nullptr;
+        std::unique_ptr<Node> right = nullptr;
         T value;
     public:
         inline Node(T value) : value(value) {};
         T getValue();
         Node* leftChild();
+        void setLeft(T nodeVal);
         Node* rightChild();
+        void setRight(T nodeVal);
     };
 
     int size = 0;
-    int balance();              //-1 for left balance, +1 for right balance, 0 for balanced.
-    void rebalance(Node val);//rebalance a node and its children.
-    Node* root = nullptr;
+    int balance(Node &cell);              //-1 for left balance, +1 for right balance, 0 for balanced.
+    void rebalance();           //rebalance a node and its children.
+    std::unique_ptr<Node> root = nullptr;
 public:
     void insert(T value);       //adds a value to the tree.
     bool search(T value);       //whether a given value is in the tree
